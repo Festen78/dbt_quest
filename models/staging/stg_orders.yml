@@ -1,0 +1,15 @@
+version: 2
+
+models:
+    - name: stg_orders
+      columns:
+        - name: order_id
+        - name: order_customer
+          foreign_key:
+            from: customer_id
+            to: ref('stg_customers')
+            severity: warn
+        - name: order_ordered_at
+          tests:
+            - not_null
+        - name: order_store_id
